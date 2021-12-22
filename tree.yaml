@@ -1,0 +1,9 @@
+---
+- hosts: own
+  become: yes
+  gather_facts: no
+  tasks:
+  - name: It will install tree
+    apt:
+     name: tree
+     state: present

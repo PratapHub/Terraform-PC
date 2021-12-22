@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: Install "{{item}}"
+    apt:
+      name: "{{item}}"  
+      state: absent
+    with_items:
+    - git
+    - tree
+    - apache2  
+  - name: To check free memory
+    debug:
+      msg: "Free memory is {{ansible_memory_mb.real.free}}"      

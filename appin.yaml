@@ -1,0 +1,10 @@
+---
+- hosts: apps
+  become: yes
+  tasks:
+  - name: Install it
+    apt:
+      name: "{{package}}" 
+      state: present
+  - debug:
+      msg: "{{package}}"    

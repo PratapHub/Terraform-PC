@@ -1,0 +1,16 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: Install Tree
+    apt:
+      name: tree
+      state: absent
+    when: ansible_os_family == "Debian"
+  - name: Checking OS
+    debug:
+      msg: "OS in the server - {{ansible_os_family}}"
+  - name: Checking free memory
+    debug:
+      msg: "Free Memory is {{ansible_memory_mb.real.free}}"
+

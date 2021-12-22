@@ -1,0 +1,27 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: Installing Tree
+    apt:
+      name: "{{item}}"
+      state: present
+    with_items:
+    - tree    
+    when: ansible_os_family == "Debian"
+    tags:
+      - install
+  - name: Installing nginx
+    apt:
+      name: "{{item}}"
+      state: present    
+    with_items:
+    - nginx  
+    when: ansible_os_family == "Debian"
+    tags:
+      - install1      
+  - name: Print free memory
+    debug:
+      msg: "Free available memory is {{ansible_memory_mb.real.free}}"       
+    tags:
+      - mem      
